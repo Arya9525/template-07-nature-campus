@@ -28,6 +28,7 @@
     initGalleryFilter();
     initFooterYear();
     initTestimonialAuto();
+    initHeroSlider();
   });
 
   function initTheme() {
@@ -46,8 +47,18 @@
           root.setAttribute('data-theme', 'dark');
           localStorage.setItem('sxa-theme', 'dark');
         }
+        updateHeroSlideOverlays();
       });
     });
+  }
+
+  function updateHeroSlideOverlays() {
+    var overlays = document.querySelectorAll('.hero-slider .h-overlay');
+    if (!overlays.length) return;
+    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
+    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%)';
+    var bg = root.getAttribute('data-theme') === 'dark' ? overlayDark : overlayLight;
+    overlays.forEach(function (o) { o.style.background = bg; });
   }
 
   function initNav() {
@@ -435,5 +446,48 @@
       index = (index + 1) % slides.length;
       slides[index].classList.remove('g-hidden');
     }, 6000);
+  }
+
+  /* ===== HERO BACKGROUND SLIDER (auto cross-fade).
+     Order: 1) building 2) prayer 3) remaining existing hero/campus images.
+     Each slide keeps the original dark overlay so text stays readable.
+     Old static background is commented out in style.css for rollback. ===== */
+  function initHeroSlider() {
+    var slider = document.querySelector('.hero-slider');
+    if (!slider || slider.getAttribute('data-init') === '1') return;
+    slider.setAttribute('data-init', '1');
+    if (prefersReduced) return;
+
+    var images = [
+      'assets/images/school-campus.jpg',   // 1. building
+      'assets/images/prayer.png',          // 2. prayer
+      'assets/images/school-vision.jpg',   // 3. heritage building / vision
+      'assets/images/gallery-01.jpg',      // 4. celebration
+      'assets/images/gallery-02.jpg',      // 5. celebration
+      'assets/images/gallery-07.jpg'       // 6. celebration
+    ];
+
+    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
+    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%)';
+
+    images.forEach(function (src, i) {
+      var slide = document.createElement('div');
+      slide.className = 'hslide' + (i === 0 ? ' active' : '');
+      slide.style.backgroundImage = 'url("' + src + '")';
+      var overlay = document.createElement('div');
+      overlay.className = 'h-overlay';
+      overlay.style.background = root.getAttribute('data-theme') === 'dark' ? overlayDark : overlayLight;
+      slide.appendChild(overlay);
+      slider.appendChild(slide);
+    });
+
+    var slides = slider.querySelectorAll('.hslide');
+    if (slides.length < 2) return;
+    var index = 0;
+    setInterval(function () {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 4500);
   }
 })();

@@ -459,6 +459,13 @@ section{scroll-margin-top:120px;}
   min-height:calc(100vh - 90px);
   display:flex;flex-direction:column;align-items:stretch;justify-content:center;
   padding:60px 0 176px;
+}
+/* ===== BACKUP: ORIGINAL HERO BACKGROUND (single static prayer.png + overlay). PRESERVED, DO NOT DELETE ===== */
+/* .hero{
+  position:relative;overflow:hidden;
+  min-height:calc(100vh - 90px);
+  display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  padding:60px 0 176px;
   background:
     linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%),
     url("../images/prayer.png") 0% 36% / cover no-repeat;
@@ -467,7 +474,20 @@ section{scroll-margin-top:120px;}
   background:
     linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%),
     url("../images/prayer.png") 0% 36% / cover no-repeat;
+} */
+/* ===== END BACKUP: ORIGINAL HERO BACKGROUND ===== */
+/* ===== HERO BACKGROUND SLIDER (auto cross-fade). Overlay moved onto each slide so
+     the original dark overlay look is preserved. Content (hero-inner z5 / wave z4)
+     sits above the slider layer. ===== */
+.hero-slider{position:absolute;inset:0;z-index:1;}
+.hero-slider .hslide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:0% 36%;background-repeat:no-repeat;
+  opacity:0;transition:opacity 1.2s ease;
 }
+.hero-slider .hslide.active{opacity:1;}
+.hero-slider .hslide .h-overlay{position:absolute;inset:0;}
+/* ===== END HERO BACKGROUND SLIDER ===== */
 .hero-sky{display:none;} /* NEW: hide decorative sun/clouds/leaves/hills so the full photo hero shows. Not deleted, only hidden. */
 
 /* ===== BACKUP: ORIGINAL HERO BACKGROUND (gradient sky, HEAD commit 2865673) ===== */
