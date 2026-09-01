@@ -798,6 +798,13 @@ section{scroll-margin-top:120px;}
   box-shadow:var(--shadow);
   padding:110px 30px;text-align:center;
 }
+.meadow-cta.meadow-cta-home{
+  background-image:
+    linear-gradient(180deg,rgba(18,36,26,.55),rgba(18,36,26,.82)),
+    url("../images/prayer.png");
+  background-position:center;
+  background-size:cover;
+}
 .meadow-cta::after{
   content:"";position:absolute;left:0;right:0;bottom:-2px;height:46px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48' preserveAspectRatio='none'%3E%3Cpath d='M0 48 L0 28 Q150 4 300 22 Q450 40 600 20 Q750 2 900 20 Q1050 38 1200 18 L1200 48 Z' fill='%23f4efe6'/%3E%3C/svg%3E") no-repeat bottom/100% 100%;
@@ -858,6 +865,7 @@ section{scroll-margin-top:120px;}
 .bi-1{border-radius:50% 42% 48% 52% / 44% 52% 46% 56%;}
 .bi-2{border-radius:40% 58% 52% 46% / 56% 44% 58% 42%;}
 .bi-3{border-radius:54% 46% 40% 60% / 48% 58% 42% 52%;}
+.blob-img.card-img{aspect-ratio:16/10;border-radius:14px;border-width:2px;}
 .float-badge{
   position:absolute;display:flex;align-items:center;gap:12px;
   background:var(--card2);border:3px solid var(--ring);border-radius:22px 14px 22px 14px;
@@ -868,6 +876,11 @@ section{scroll-margin-top:120px;}
 .float-badge span{font-size:.8rem;color:var(--muted);line-height:1.2;}
 .fb-1{top:8%;left:-24px;animation:bob 7s ease-in-out infinite;}
 .fb-2{bottom:10%;right:-20px;animation:bob 9s ease-in-out infinite;}
+.split-img-card .float-badge{gap:9px;padding:9px 12px;border-width:2px;border-radius:16px 10px 16px 10px;}
+.split-img-card .fb-num{font-size:1.25rem;}
+.split-img-card .float-badge span{font-size:.7rem;}
+.split-img-card .fb-1{top:4%;left:4%;}
+.split-img-card .fb-2{bottom:4%;right:4%;}
 .split-copy h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;margin-bottom:18px;}
 .split-copy p{color:var(--muted);margin-bottom:16px;}
 .check-list{list-style:none;padding:0;margin:22px 0 30px;}
