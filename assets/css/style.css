@@ -808,6 +808,20 @@ section{scroll-margin-top:120px;}
 .leaf-card:nth-child(6){border-radius:40% 60% 60% 40% / 46% 52% 48% 54%;}
 .leaf-card:nth-child(even){transform:translateY(26px);}
 .leaf-card:nth-child(even):hover{transform:translateY(14px) rotate(2deg) scale(1.02);}
+/* ===== RECTANGULAR variant: the 6 Highlights feature cards (".grove-rect" = index.html
+     Highlights section). Converts the oval border to a clean, moderately rounded
+     rectangle. All colors, green border, green circular icon, typography, spacing,
+     shadows and 3-column layout are unchanged. Other grove sections untouched. ===== */
+.grove-rect .leaf-card{
+  border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+}
+.grove-rect .leaf-card:nth-child(2),
+.grove-rect .leaf-card:nth-child(3),
+.grove-rect .leaf-card:nth-child(4),
+.grove-rect .leaf-card:nth-child(5),
+.grove-rect .leaf-card:nth-child(6){border-radius:18px;}
+/* ===== END RECTANGULAR variant ===== */
 .grove-icon{
   width:64px;height:64px;border-radius:50% 44% 50% 46%;margin-bottom:18px;
   background:linear-gradient(135deg,var(--leaf),var(--forest));
@@ -1056,8 +1070,17 @@ section{scroll-margin-top:120px;}
 .pin-link:hover i{transform:translateX(5px);}
 
 /* ==================== SEASONAL EVENTS + COUNTDOWN FLOWER ==================== */
+/* ===== FIX: 3-column event grid. Old .events-row (1fr 360px) left an empty right column
+     on pages without a sidebar. Old .season-grid (1fr 1fr) showed only 2 cards per row.
+     Now .events-row is a single column wrapper and .season-grid holds 3 cards per row
+     (4th–6th wrap to the next row automatically). Card UI itself unchanged. ===== */
+/* ORIGINAL:
 .events-row{display:grid;grid-template-columns:1fr 360px;gap:44px;align-items:start;max-width:1120px;margin:0 auto;}
 .season-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+===== END ORIGINAL ===== */
+.events-row{display:block;max-width:1120px;margin:0 auto;}
+.season-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+/* ===== END 3-column event grid ===== */
 .season-card{
   position:relative;background:var(--card);border:3px solid var(--ring);
   border-top-width:6px;border-radius:24px 24px 24px 24px;padding:24px 24px 20px;
@@ -1673,6 +1696,7 @@ section{scroll-margin-top:120px;}
   .n-chips{display:none;}
   .n-brand-text small{display:none;}
   .letters,.saplings,.split,.quotes,.contact-grid,.events-row{grid-template-columns:1fr;}
+  .season-grid{grid-template-columns:repeat(2,1fr);} /* tablet: 2 event cards per row */
   .count-flower-card{position:static;}
   .tree-timeline::before{left:18px;}
   .tree-node{width:100%;text-align:left;padding:26px 0 26px 54px;}
