@@ -761,25 +761,12 @@ section{scroll-margin-top:120px;}
 
 /* ==================== HIGHLIGHTS GROVE ==================== */
 .grove{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 30px;max-width:1120px;margin:0 auto;}
-/* ===== FIX: oval leaf-card, text positioning. Original card kept identical
-     (shape/size/colors). Content moved slightly inward/upward so no word
-     touches the oval border; overflow hidden + token wrapping retained. ===== */
-/* ORIGINAL:
 .leaf-card{
   position:relative;background:var(--card);border:3px solid var(--ring);
   border-radius:46% 54% 52% 48% / 44% 40% 60% 56%;
   padding:38px 30px 34px;box-shadow:var(--shadow);
   transition:transform .5s var(--ease),box-shadow .5s var(--ease);
-} */
-.leaf-card{
-  position:relative;background:var(--card);border:3px solid var(--ring);
-  border-radius:46% 54% 52% 48% / 44% 40% 60% 56%;
-  padding:46px 34px 42px;box-shadow:var(--shadow);
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  overflow:hidden;overflow-wrap:anywhere;hyphens:auto;
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
 }
-.leaf-card h3,.leaf-card p{max-width:82%;}
 .leaf-card:hover{transform:translateY(-12px) rotate(-2deg) scale(1.02);box-shadow:var(--shadow);}
 .leaf-card:nth-child(2){border-radius:40% 60% 46% 54% / 58% 44% 56% 42%;}
 .leaf-card:nth-child(3){border-radius:58% 42% 38% 62% / 52% 60% 40% 48%;}
@@ -796,8 +783,8 @@ section{scroll-margin-top:120px;}
   transition:transform .5s var(--ease);
 }
 .leaf-card:hover .grove-icon{transform:rotate(-18deg) scale(1.08);}
-.leaf-card h3{font-size:1.22rem;font-weight:700;margin:0 auto 10px;overflow-wrap:anywhere;}
-.leaf-card p{color:var(--muted);font-size:.95rem;line-height:1.5;margin:0 auto;overflow-wrap:anywhere;}
+.leaf-card h3{font-size:1.22rem;font-weight:700;margin-bottom:10px;}
+.leaf-card p{color:var(--muted);font-size:.95rem;margin:0;}
 
 /* ==================== LETTER CARDS (chairman/principal) ==================== */
 .letters{display:grid;grid-template-columns:1fr 1fr;gap:44px;max-width:1120px;margin:0 auto;}
@@ -1101,31 +1088,15 @@ section{scroll-margin-top:120px;}
 .g-frame img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
 .g-frame:hover{transform:scale(1.04) rotate(1.5deg);z-index:2;}
 .g-frame:hover img{transform:scale(1.1);}
-/* ===== BACKUP: ORIGINAL G-CAP (hover-only pill caption). PRESERVED, DO NOT DELETE ===== */
-/* .g-cap{
+.g-cap{
   position:absolute;left:14px;bottom:14px;
   background:var(--card2);border-radius:999px;padding:7px 16px;
   font-weight:800;font-size:.8rem;color:var(--forest);
   display:inline-flex;align-items:center;gap:8px;opacity:0;transform:translateY(12px);
   transition:opacity .4s var(--ease),transform .4s var(--ease);
 }
-.g-frame:hover .g-cap{opacity:1;transform:none;} */
-/* ===== END BACKUP: ORIGINAL G-CAP ===== */
-/* ===== FIX: text clipping (overflow:hidden + oval border-radius clips caption edges).
-     Original: left:10px;right:10px;bottom:10px — no wrapping, no z-index.
-     Fix: keep overlay identical; add flex-wrap, overflow-wrap, z-index, center text. ===== */
-.g-cap{
-  position:absolute;left:10px;right:10px;bottom:10px;
-  background:rgba(18,36,26,.78);
-  border-radius:14px;padding:8px 12px;
-  font-weight:800;font-size:.82rem;line-height:1.35;color:#fff;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  flex-wrap:wrap;overflow-wrap:anywhere;text-align:center;
-  opacity:1;transform:none;z-index:1;
-  transition:opacity .4s var(--ease),transform .4s var(--ease);
-}
-/* .g-cap .leaf{color:var(--leaf);} */
-.g-cap .leaf{display:none;}
+.g-frame:hover .g-cap{opacity:1;transform:none;}
+.g-cap .leaf{color:var(--leaf);}
 .g-frame:nth-child(4n+1){border-radius:52% 48% 58% 42% / 44% 56% 44% 56%;}
 .g-frame:nth-child(4n+2){border-radius:40% 60% 44% 56% / 58% 42% 58% 42%;}
 .g-frame:nth-child(4n+3){border-radius:60% 40% 36% 64% / 52% 60% 40% 48%;}
