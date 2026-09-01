@@ -431,12 +431,8 @@ section{scroll-margin-top:120px;}
 } */
 /* ==== END BACKUP - ORIGINAL CODE (HERO FRAMING fix #4) ==== */
 
-/* ==== NEW ACTIVE HERO (framing fix #5) — background-position 35% -> 30% horizontal: with the text block
-        shifted slightly toward center-LEFT (see .hero-panel below), this pushes the microphone-speaking
-        girl even further RIGHT, so her face and upper body stay COMPLETELY clear of "A Legacy of Faith,"
-        / "Girls' Education & Love". CROP STAYS cover (max scene already shown = "zoom-out" limit without
-        creating empty edges). Vertical 36%. Full-width RECTANGULAR cover — no oval/circle, no gaps. ==== */
-.hero{
+/* BACKUP - ORIGINAL CODE - DO NOT DELETE (HERO FRAMING fix #5: background-position "30% 36%"). PRESERVED. */
+/* .hero{
   position:relative;overflow:hidden;
   min-height:calc(100vh - 90px);
   display:flex;flex-direction:column;align-items:stretch;justify-content:center;
@@ -449,6 +445,28 @@ section{scroll-margin-top:120px;}
   background:
     linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%),
     url("../images/prayer.png") 30% 36% / cover no-repeat;
+} */
+/* ==== END BACKUP - ORIGINAL CODE (HERO FRAMING fix #5) ==== */
+
+/* ==== NEW ACTIVE HERO (framing fix #6) — background-position 30% -> 0% horizontal per "move the girl
+        further to the RIGHT" request. IMPORTANT: for a `cover` background, LOWERING the horizontal %
+        (toward 0 = photo's LEFT edge aligned with the hero's left edge) pushes every subject on the right
+        side of the photo FURTHER RIGHT on screen — this is the setting that lands the microphone-speaking
+        girl nearest the RIGHT edge, outside the heading/paragraph. Text, panel, buttons and cards are
+        NOT moved. Vertical stays 36%. Full-width RECTANGULAR cover — no oval/circle, no empty edges. ==== */
+.hero{
+  position:relative;overflow:hidden;
+  min-height:calc(100vh - 90px);
+  display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  padding:60px 0 176px;
+  background:
+    linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%),
+    url("../images/prayer.png") 0% 36% / cover no-repeat;
+}
+[data-theme="dark"] .hero{
+  background:
+    linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%),
+    url("../images/prayer.png") 0% 36% / cover no-repeat;
 }
 .hero-sky{display:none;} /* NEW: hide decorative sun/clouds/leaves/hills so the full photo hero shows. Not deleted, only hidden. */
 
