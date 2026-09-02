@@ -451,7 +451,7 @@
   }
 
   /* ===== HERO BACKGROUND SLIDER (auto cross-fade).
-     Order: 1) building 2) prayer 3) red 4) white.
+     Order: 1) building 2) prayer 3) nukad 4) red 5) science.
      Each slide keeps the original dark overlay so text stays readable.
      Old static background is commented out in style.css for rollback. ===== */
   function initHeroSlider() {
@@ -463,8 +463,9 @@
     var images = [
       'assets/images/hero/hero-building.jpg', // 1. building (always first)
       'assets/images/hero/hero-prayer.jpg',   // 2. prayer
-      'assets/images/hero/red.png',           // 3.
-      'assets/images/hero/white.png'          // 4.
+      'assets/images/hero/nukad.png',         // 3. nukad
+      'assets/images/hero/red.png',           // 4. red
+      'assets/images/hero/science.png'        // 5. science
     ];
 
     var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
