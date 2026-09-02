@@ -1775,5 +1775,49 @@ section{scroll-margin-top:120px;}
   .hero-panel{flex:none;}
   .hero-title{font-size:clamp(1.8rem,8.5vw,2.5rem);}
   .hero-ctas .btn-leaf,.hero-ctas .btn-leaf-outline{padding:11px 18px;font-size:.85rem;}
-  .hero-metrics{grid-template-columns:repeat(2,1fr);} /* stack 2x2 so cards never crowd the photo on phones */
+  .hero-metrics{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ================================================================
+   MOBILE RESPONSIVE FIXES
+   ================================================================ */
+
+/* --- Global mobile overflow guard --- */
+@media (max-width:767.98px){
+  html,body,.n-header,.n-nav,.hero{overflow-x:hidden;}
+}
+
+/* --- Mobile header: full logo visible, hide school name/tagline text --- */
+@media (max-width:575.98px){
+  .n-brand-text{display:none;}
+  .n-brand .n-logo{height:40px;width:173px;}
+  .n-brand{gap:0;}
+}
+
+/* --- Ensure burger and theme buttons are always visible --- */
+@media (max-width:991.98px){
+  .n-burger{display:grid;}
+  .n-actions{margin-left:auto;}
+}
+
+/* --- Hero background: fit properly without unnecessary cropping on mobile --- */
+@media (max-width:767.98px){
+  .hero-slider .hslide{background-size:cover;background-position:center center;}
+}
+
+/* --- Hero panel: remove desktop horizontal shift on mobile --- */
+@media (max-width:767.98px){
+  .hero-panel{transform:none;}
+}
+
+/* --- Hero content: prevent overflow and improve readability on small screens --- */
+@media (max-width:767.98px){
+  .hero-title{word-wrap:break-word;overflow-wrap:break-word;}
+  .hero-sub{word-wrap:break-word;overflow-wrap:break-word;padding:0 16px;}
+  .hero-ctas{gap:12px;padding:0 10px;}
+  .hero-metrics{gap:8px;}
+  .metric{padding:12px 6px;}
+  .metric b{font-size:clamp(1.1rem,4.5vw,1.4rem);}
+  .metric span{font-size:.58rem;}
+  .hero-panel{padding:0 12px;box-sizing:border-box;}
 }
