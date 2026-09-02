@@ -81,6 +81,7 @@
       drawer.setAttribute('aria-hidden', 'false');
       if (burger) burger.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     }
     function closeDrawer() {
       if (!drawer) return;
@@ -88,6 +89,7 @@
       drawer.setAttribute('aria-hidden', 'true');
       if (burger) burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
 
     if (burger) burger.addEventListener('click', openDrawer);

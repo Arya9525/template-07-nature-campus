@@ -1800,6 +1800,35 @@ section{scroll-margin-top:120px;}
   .n-actions{margin-left:auto;}
 }
 
+/* --- Mobile drawer: fixed header (logo + close), only menu + CTAs scroll --- */
+@media (max-width:767.98px){
+  /* stop the whole drawer-inner from scrolling; it becomes a flex column */
+  .n-drawer-inner{overflow:hidden;}
+  /* fixed non-scrolling header: logo left, close button right, no overlap */
+  .n-drawer-brand{flex:none;align-self:stretch;width:100%;justify-content:flex-start;gap:12px;}
+  .n-drawer-brand .n-logo{width:180px;height:44px;}
+  /* only the menu links + action buttons area scrolls */
+  .n-drawer-links{
+    flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    align-self:stretch;width:100%;
+  }
+  /* action buttons: full-width stacked menu-item cards inside the scroller */
+  .n-drawer-ctas{width:100%;flex-direction:column;align-items:stretch;gap:14px;}
+  .n-drawer-ctas a{
+    width:100%;display:flex;align-items:center;gap:12px;
+    background:var(--card);border:2px solid var(--line);border-radius:22px 26px 18px 26px;
+    padding:16px 20px;color:var(--text);font-weight:800;font-size:1rem;line-height:1.5;
+    transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+  }
+  .n-drawer-ctas a:hover{transform:translateY(-4px) rotate(-1deg);border-color:var(--leaf);background:var(--card2);color:var(--forest);}
+  [data-theme="dark"] .n-drawer-ctas a:hover{color:#f4efe6;}
+}
+/* --- Mobile drawer: hide school name/tagline text (keep the logo image) --- */
+@media (max-width:575.98px){
+  .n-drawer-brand strong,
+  .n-drawer-brand small{display:none;}
+}
+
 /* --- Hero background: fit properly without unnecessary cropping on mobile --- */
 @media (max-width:767.98px){
   .hero-slider .hslide{background-size:cover;background-position:center center;}
