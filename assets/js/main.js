@@ -451,7 +451,7 @@
   }
 
   /* ===== HERO BACKGROUND SLIDER (auto cross-fade).
-     Order: 1) building 2) prayer 3) remaining existing hero/campus images.
+     Order: 1) building 2) prayer 3) red 4) white.
      Each slide keeps the original dark overlay so text stays readable.
      Old static background is commented out in style.css for rollback. ===== */
   function initHeroSlider() {
@@ -461,10 +461,10 @@
     if (prefersReduced) return;
 
     var images = [
-      'assets/images/hero/hero-building.jpg', // 1. building
+      'assets/images/hero/hero-building.jpg', // 1. building (always first)
       'assets/images/hero/hero-prayer.jpg',   // 2. prayer
-      'assets/images/hero/hero-building.jpg', // 3. building
-      'assets/images/hero/hero-prayer.jpg'    // 4. prayer
+      'assets/images/hero/red.png',           // 3.
+      'assets/images/hero/white.png'          // 4.
     ];
 
     var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
