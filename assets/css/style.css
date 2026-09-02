@@ -1829,14 +1829,12 @@ section{scroll-margin-top:120px;}
   .n-drawer-brand small{display:none;}
 }
 
-/* --- Hero background: fit the full image on mobile/tablet without excessive
-     zoom/crop of the building or faces; keep aspect ratio, no stretch/distortion.
-     A solid dark backdrop fills any letterbox so the hero stays visually filled.
-     The existing dark readability overlay is a separate element (no blur on image). --- */
+/* --- Hero background: fill the entire hero edge-to-edge on mobile/tablet so the
+     image stays behind all content as ONE full hero section (no letterbox strip,
+     no empty areas). cover fills full-height; center keeps the important middle
+     of the building/photo in frame. No blur; overlay is a separate element. --- */
 @media (max-width:991.98px){
-  .hero-slider{background:#152a1c;}
-  [data-theme="dark"] .hero-slider{background:#0b120d;}
-  .hero-slider .hslide{background-size:contain;background-position:center center;}
+  .hero-slider .hslide{background-size:cover;background-position:center center;}
 }
 
 /* --- Hero panel: remove desktop horizontal shift on mobile --- */
