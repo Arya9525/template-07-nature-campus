@@ -461,12 +461,10 @@
     if (prefersReduced) return;
 
     var images = [
-      'assets/images/school-campus.jpg',   // 1. building
-      'assets/images/prayer.png',          // 2. prayer
-      'assets/images/school-vision.jpg',   // 3. heritage building / vision
-      'assets/images/gallery-01.jpg',      // 4. celebration
-      'assets/images/gallery-02.jpg',      // 5. celebration
-      'assets/images/gallery-07.jpg'       // 6. celebration
+      'assets/images/hero/hero-building.jpg', // 1. building
+      'assets/images/hero/hero-prayer.jpg',   // 2. prayer
+      'assets/images/hero/hero-building.jpg', // 3. building
+      'assets/images/hero/hero-prayer.jpg'    // 4. prayer
     ];
 
     var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
