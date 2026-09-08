@@ -268,7 +268,7 @@
       if (!body) return;
       var msg = document.createElement('div');
       msg.className = 'w-msg bot';
-      msg.innerHTML = '<span class="leaf" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z" fill="#7cb342"/><path d="M32 70 C50 56 64 42 70 24" fill="none" stroke="#f4efe6" stroke-width="6" stroke-linecap="round"/></svg></span> ' + text;
+      msg.innerHTML = '<span class="leaf" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z" fill="#EF4235"/><path d="M32 70 C50 56 64 42 70 24" fill="none" stroke="#f4efe6" stroke-width="6" stroke-linecap="round"/></svg></span> ' + text;
       body.appendChild(msg);
       body.scrollTop = body.scrollHeight;
     }
@@ -451,9 +451,10 @@
   }
 
   /* ===== HERO BACKGROUND SLIDER (auto cross-fade).
-     Order: 1) building 2) prayer 3) nukad 4) red 5) science.
-     Each slide keeps the original dark overlay so text stays readable.
-     Old static background is commented out in style.css for rollback. ===== */
+     ONLY 3 slides per school requirement:
+       1) St. Anthony (name)     2) Mother Foundress (name)  3) School Building.
+     Slides with a "caption" display the name (St. Anthony, Foundress).
+     Each slide keeps the original dark overlay so text stays readable. ===== */
   function initHeroSlider() {
     var slider = document.querySelector('.hero-slider');
     if (!slider || slider.getAttribute('data-init') === '1') return;
@@ -461,24 +462,28 @@
     if (prefersReduced) return;
 
     var images = [
-      'assets/images/hero/hero-building.jpg', // 1. building (always first)
-      'assets/images/hero/hero-prayer.jpg',   // 2. prayer
-      'assets/images/hero/nukad.png',         // 3. nukad
-      'assets/images/hero/red.png',           // 4. red
-      'assets/images/hero/science.png'        // 5. science
+      { src: 'assets/images/st.jpeg', caption: 'St. Anthony', fit: 'face-st' },
+      { src: 'assets/images/fundress.jpg', caption: 'St. Claudine Th\u00e9venet', fit: 'face-fo' },
+      { src: 'assets/images/hero/hero-building.jpg', caption: 'St. Anthony\u0027s Junior College' }
     ];
 
     var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
     var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%)';
 
-    images.forEach(function (src, i) {
+    images.forEach(function (img, i) {
       var slide = document.createElement('div');
-      slide.className = 'hslide' + (i === 0 ? ' active' : '');
-      slide.style.backgroundImage = 'url("' + src + '")';
+      slide.className = 'hslide' + (i === 0 ? ' active' : '') + (img.fit ? ' ' + img.fit : '');
+      slide.style.backgroundImage = 'url("' + img.src + '")';
       var overlay = document.createElement('div');
       overlay.className = 'h-overlay';
       overlay.style.background = root.getAttribute('data-theme') === 'dark' ? overlayDark : overlayLight;
       slide.appendChild(overlay);
+      if (img.caption) {
+        var cap = document.createElement('div');
+        cap.className = 'h-caption';
+        cap.textContent = img.caption;
+        slide.appendChild(cap);
+      }
       slider.appendChild(slide);
     });
 
