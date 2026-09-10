@@ -55,8 +55,8 @@
   function updateHeroSlideOverlays() {
     var overlays = document.querySelectorAll('.hero-slider .h-overlay');
     if (!overlays.length) return;
-    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
-    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%)';
+    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.3) 0%, rgba(7,19,14,.22) 45%, rgba(7,19,14,.42) 100%)';
+    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.36) 0%, rgba(5,13,9,.28) 45%, rgba(1,5,3,.45) 100%)';
     var bg = root.getAttribute('data-theme') === 'dark' ? overlayDark : overlayLight;
     overlays.forEach(function (o) { o.style.background = bg; });
   }
@@ -74,6 +74,11 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    var navCurrent = (location.pathname.split('/').pop() || 'index.html');
+    document.querySelectorAll('.n-chip').forEach(function (chip) {
+      chip.classList.toggle('active', chip.getAttribute('href') === navCurrent);
+    });
 
     function openDrawer() {
       if (!drawer) return;
@@ -467,8 +472,8 @@
       { src: 'assets/images/hero/hero-building.jpg', caption: 'St. Anthony\u0027s Junior College' }
     ];
 
-    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.55) 0%, rgba(7,19,14,.42) 45%, rgba(7,19,14,.74) 100%)';
-    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.64) 0%, rgba(5,13,9,.5) 45%, rgba(1,5,3,.78) 100%)';
+    var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.3) 0%, rgba(7,19,14,.22) 45%, rgba(7,19,14,.42) 100%)';
+    var overlayDark = 'linear-gradient(180deg, rgba(5,13,9,.36) 0%, rgba(5,13,9,.28) 45%, rgba(1,5,3,.45) 100%)';
 
     images.forEach(function (img, i) {
       var slide = document.createElement('div');
@@ -490,10 +495,45 @@
     var slides = slider.querySelectorAll('.hslide');
     if (slides.length < 2) return;
     var index = 0;
-    setInterval(function () {
+
+    function show(i) {
       slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
+      index = (i + slides.length) % slides.length;
       slides[index].classList.add('active');
+    }
+
+    var timer = setInterval(function () {
+      show(index + 1);
     }, 4500);
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        show(index + 1);
+      }, 4500);
+    }
+
+    var prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.className = 'hero-arrow hero-prev';
+    prevBtn.setAttribute('aria-label', 'Previous slide');
+    prevBtn.innerHTML = '<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>';
+    prevBtn.addEventListener('click', function () {
+      startAuto();
+      show(index - 1);
+    });
+
+    var nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'hero-arrow hero-next';
+    nextBtn.setAttribute('aria-label', 'Next slide');
+    nextBtn.innerHTML = '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>';
+    nextBtn.addEventListener('click', function () {
+      startAuto();
+      show(index + 1);
+    });
+
+    slider.parentElement.appendChild(prevBtn);
+    slider.parentElement.appendChild(nextBtn);
   }
 })();

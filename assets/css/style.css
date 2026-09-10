@@ -334,12 +334,20 @@ section{scroll-margin-top:120px;}
 .n-chip.active{background:var(--forest);color:#fff;}
 [data-theme="dark"] .n-chip.active{background:var(--leaf);color:#1a0e13;}
 .n-wave{
-  position:absolute;left:16px;right:16px;bottom:3px;height:7px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M0 5 Q1.6 1.6 3.2 5 T6.4 5 T9.6 5 T12.8 5' fill='none' stroke='%23c4476a' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 0/12px 7px;
-  opacity:0;transform:translateY(5px);
-  transition:opacity .3s var(--ease),transform .3s var(--ease);
+  position:absolute;left:16px;right:16px;bottom:3px;height:3px;border-radius:999px;
+  background:linear-gradient(90deg,#863A35 0%,#b06a62 25%,#863A35 50%,#b06a62 75%,#863A35 100%);
+  background-size:200% 100%;
+  opacity:0;transform:scaleX(0);
+  transition:opacity .4s var(--ease),transform .5s var(--ease);
 }
-.n-chip:hover .n-wave,.n-chip.active .n-wave{opacity:1;transform:none;}
+.n-chip:hover .n-wave,.n-chip.active .n-wave{
+  opacity:1;transform:scaleX(1);
+  animation:navLineSweep 2.2s linear infinite;
+}
+@keyframes navLineSweep{
+  0%{background-position:0% 0;}
+  100%{background-position:-200% 0;}
+}
 .n-actions{display:flex;align-items:center;gap:10px;flex:none;margin-left:auto;}
 .n-theme{
   position:relative;width:44px;height:44px;flex:none;
@@ -602,8 +610,8 @@ section{scroll-margin-top:120px;}
         girl nearest the RIGHT edge, outside the heading/paragraph. Text, panel, buttons and cards are
         NOT moved. Vertical stays 36%. Full-width RECTANGULAR cover â€” no oval/circle, no empty edges. ==== */
 .hero{
-  position:relative;overflow:hidden;
-  min-height:calc(100vh - 90px);
+  position:relative;overflow:visible;
+  min-height:calc(100vh - 90px); margin-top:15px;
   display:flex;flex-direction:column;align-items:stretch;justify-content:center;
   padding:60px 0 176px;
 }
@@ -627,26 +635,46 @@ section{scroll-margin-top:120px;}
      the original dark overlay look is preserved. Content (hero-inner z5 / wave z4)
      sits above the slider layer. ===== */
 .hero-slider{position:absolute;inset:0;z-index:1;}
-.hero-slider .hslide{
+/* BACKUP - ORIGINAL CODE - DO NOT DELETE (hero slide cropped/zoomed via cover). PRESERVED. */
+/* .hero-slider .hslide{
   position:absolute;inset:0;
   background-size:cover;background-position:0% 36%;background-repeat:no-repeat;
+  opacity:0;transition:opacity 1.2s ease;
+} */
+/* ==== END BACKUP - ORIGINAL CODE (hero slide cover) ==== */
+.hero-slider .hslide{
+  position:absolute;inset:0;
+  background-size:contain;background-position:center center;background-repeat:no-repeat;
   opacity:0;transition:opacity 1.2s ease;
 }
 .hero-slider .hslide.active{opacity:1;}
 .hero-slider .hslide .h-overlay{position:absolute;inset:0;}
 .hero-slider .hslide .h-caption{
-  position:absolute;top:26px;left:32px;z-index:2;
+  position:absolute;bottom:64px;right:32px;z-index:2;
   display:inline-block;max-width:min(78%,520px);
   background:rgba(15,8,6,.55);border-left:4px solid #fff;
   color:#fff;padding:12px 20px;border-radius:0 14px 14px 0;
   font-family:var(--font-display);font-size:1.22rem;font-weight:700;
   letter-spacing:.05em;text-shadow:0 2px 10px rgba(0,0,0,.4);
 }
-/* Person slides (St. Anthony, Mother Foundress): full-bleed cover (no black
-   bars). Vertical position keeps each face clearly visible. Building slide
-   keeps its normal cover behaviour. */
-.hero-slider .hslide.face-st{background-size:cover;background-position:center top;}
-.hero-slider .hslide.face-fo{background-size:cover;background-position:center 5%;}
+/* Person slides (St. Anthony, Mother Foundress): fill the full hero edge-to-edge
+   exactly like the building slide — cover + centre = no grey/blank side gaps and
+   only a minimal symmetric crop (both photos are ~16:9 like the building). */
+/* BACKUP - ORIGINAL CODE - DO NOT DELETE (person slides cropped/zoomed via cover). PRESERVED. */
+/* .hero-slider .hslide.face-st{background-size:cover;background-position:center top;} */
+/* .hero-slider .hslide.face-fo{background-size:cover;background-position:center 5%;} */
+/* ==== END BACKUP - ORIGINAL CODE (person slides cover) ==== */
+/* BACKUP - CURRENT CONTAIN RULES - DO NOT DELETE (contain centred the image and left blank side gaps). PRESERVED. */
+/* .hero-slider .hslide.face-st{background-size:contain;background-position:center center;} */
+/* .hero-slider .hslide.face-fo{background-size:contain;background-position:center center;} */
+/* ==== END BACKUP - CURRENT CONTAIN RULES ==== */
+.hero-slider .hslide.face-st{background-size:cover;background-position:center 25%;}
+.hero-slider .hslide.face-fo{background-size:cover;background-position:center center;}
+/* BACKUP - ORIGINAL CODE - DO NOT DELETE (building slide inherits contain -> side
+   gaps). PRESERVED. */
+/* .hero-slider .hslide:not(.face-st):not(.face-fo){background-size:contain;background-position:center center;} */
+/* ==== END BACKUP - ORIGINAL CODE (building slide contain) ==== */
+.hero-slider .hslide:not(.face-st):not(.face-fo){background-size:cover;background-position:center center;}
 /* ===== END HERO BACKGROUND SLIDER ===== */
 .hero-sky{display:none;} /* NEW: hide decorative sun/clouds/leaves/hills so the full photo hero shows. Not deleted, only hidden. */
 
@@ -934,10 +962,33 @@ section{scroll-margin-top:120px;}
 /* .metric span{font-size:.67rem;font-weight:800;color:var(--muted);letter-spacing:.04em;} */
 /* ==== END BACKUP - ORIGINAL CODE (metric label .67rem) ==== */
 .metric span{font-size:.65rem;font-weight:800;color:var(--muted);letter-spacing:.04em;}
+/* BACKUP - ORIGINAL WORKING COPY - DO NOT DELETE (wave overhang -84px pulled the
+   white band over the notice top, creating the white/wave gap). PRESERVED. */
+/* .hero-wave{position:absolute;left:0;bottom:-84px;width:100%;height:140px;z-index:4;pointer-events:none;} */
+/* ==== END BACKUP - ORIGINAL WORKING COPY CODE (wave overhang) ==== */
 .hero-wave{
-  position:absolute;left:0;bottom:-1px;width:100%;height:140px;z-index:4;pointer-events:none;
+  position:absolute;left:0;bottom:-90px;width:100%;height:90px;z-index:4;pointer-events:none;
 }
 .hero-wave svg{display:block;width:100%;height:100%;}
+
+/* Hero slider prev/next arrows */
+.hero-arrow{
+  position:absolute;top:50%;z-index:6;transform:translateY(-50%);
+  display:grid;place-items:center;width:46px;height:46px;border-radius:50%;
+  background:rgba(15,8,6,.35);color:#f4efe6;border:2px solid rgba(244,239,230,.55);
+  font-size:1.05rem;line-height:1;cursor:pointer;padding:0;
+  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease);
+}
+.hero-prev{left:18px;}
+.hero-next{right:18px;}
+.hero-arrow:hover{background:rgba(15,8,6,.6);border-color:rgba(244,239,230,.85);}
+.hero-arrow:active{transform:translateY(-50%) scale(.92);}
+.hero-arrow i{pointer-events:none;}
+@media (max-width:767.98px){
+  .hero-arrow{width:40px;height:40px;font-size:.95rem;}
+  .hero-prev{left:10px;}
+  .hero-next{right:10px;}
+}
 
 /* ==================== HIGHLIGHTS GROVE ==================== */
 .grove{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 30px;max-width:1120px;margin:0 auto;}
@@ -1005,16 +1056,16 @@ section{scroll-margin-top:120px;}
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z' fill='none' stroke='%23c4476a' stroke-width='2.5' opacity='.25'/%3E%3Cpath d='M32 70 C50 56 64 42 70 24' fill='none' stroke='%23c4476a' stroke-width='2.5' opacity='.25'/%3E%3C/svg%3E") no-repeat center/contain;
   opacity:.5;pointer-events:none;
 }
-.letter-person{display:flex;align-items:center;gap:18px;margin-bottom:22px;position:relative;z-index:1;}
+.letter-person{display:flex;align-items:flex-start;gap:18px;margin-bottom:22px;position:relative;z-index:1;}
 .letter-photo{
   width:86px;height:86px;flex:none;border-radius:48% 52% 44% 56% / 42% 58% 42% 58%;
   border:4px solid var(--sage);object-fit:cover;overflow:hidden;
   box-shadow:var(--shadow-soft);
 }
 .letter-photo img{width:100%;height:100%;object-fit:cover;}
-.letter-role{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf-deep);}
-.letter-name{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--forest);margin:2px 0;}
-.letter-text{color:var(--muted);font-size:.99rem;position:relative;z-index:1;}
+.letter-role{display:block;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#000;line-height:1.65;}
+.letter-name{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--bark);margin:6px 0 0;}
+.letter-text{color:var(--muted);font-size:.99rem;text-align:justify;line-height:1.75;position:relative;z-index:1;}
 .letter-text p:first-of-type::first-letter{
   font-family:var(--font-display);font-size:3rem;float:left;line-height:.85;
   margin:6px 10px 0 0;color:var(--leaf-deep);
@@ -1372,7 +1423,7 @@ section{scroll-margin-top:120px;}
 .meadow-cta{
   position:relative;max-width:1120px;margin:0 auto;border-radius:50px 30px 50px 30px;overflow:hidden;
   background:linear-gradient(180deg,rgba(26,14,19,.55),rgba(26,14,19,.82)),
-    url("https://picsum.photos/seed/nature/1400/800") center/cover no-repeat;
+    url("../images/prayer.png") center/cover no-repeat;
   box-shadow:var(--shadow);
   padding:110px 30px;text-align:center;
 }
@@ -1444,6 +1495,7 @@ section{scroll-margin-top:120px;}
 .bi-2{border-radius:40% 58% 52% 46% / 56% 44% 58% 42%;}
 .bi-3{border-radius:54% 46% 40% 60% / 48% 58% 42% 52%;}
 .blob-img.card-img{aspect-ratio:16/10;border-radius:14px;border-width:2px;}
+#about .split-img-card .blob-img{width:115%;}
 .float-badge{
   position:absolute;display:flex;align-items:center;gap:12px;
   background:var(--card2);border:3px solid var(--ring);border-radius:22px 14px 22px 14px;
@@ -1523,7 +1575,11 @@ section{scroll-margin-top:120px;}
 .nature-acc .accordion-button:not(.collapsed){background:var(--card2);color:var(--leaf-deep);box-shadow:none;}
 [data-theme="dark"] .nature-acc .accordion-button:not(.collapsed){color:var(--leaf);}
 .nature-acc .accordion-button:focus{box-shadow:none;}
-.nature-acc .accordion-body{background:var(--card);color:var(--muted);padding:22px 26px;font-size:.95rem;}
+/* BACKUP: .nature-acc .accordion-body{background:var(--card);color:var(--muted);padding:22px 26px;font-size:.95rem;} */
+.nature-acc .accordion-body{background:var(--card);color:var(--text);opacity:1;padding:22px 26px;font-size:.95rem;}
+.nature-acc .accordion-body p{color:var(--text);opacity:1;}
+[data-theme="dark"] .nature-acc .accordion-body{color:#f7f0ea;opacity:1;}
+[data-theme="dark"] .nature-acc .accordion-body p{color:#f7f0ea;opacity:1;}
 .nature-acc .accordion-button::after{filter:hue-rotate(80deg) saturate(.6);}
 
 /* ==================== FEES TABLE ==================== */
@@ -1610,6 +1666,10 @@ section{scroll-margin-top:120px;}
 .map-embed iframe{display:block;width:100%;height:100%;min-height:440px;border:0;}
 
 /* ==================== FOOTER + NOTICE STRIP ==================== */
+/* Home hero wave sits directly below the hero image, above the notice bar */
+.hero ~ .notice-strip{margin-top:90px;}
+/* Home: compact gap between the notice bar and the Welcome section */
+.notice-strip + #about{padding-top:60px;}
 .notice-strip{
   position:relative;z-index:3;background:var(--forest);color:var(--cream);
   overflow:hidden;padding:12px 0;border-top:4px solid var(--leaf);
@@ -1992,6 +2052,10 @@ section{scroll-margin-top:120px;}
 @media (max-width:767.98px){
   html,body,.n-header,.n-nav,.hero{overflow-x:hidden;}
 }
+/* Hero wave sits below the hero box — keep it visible on mobile too */
+@media (max-width:767.98px){
+  .hero{overflow:visible;}
+}
 
 /* --- Mobile header: full logo visible, hide school name/tagline text --- */
 @media (max-width:575.98px){
@@ -2035,12 +2099,14 @@ section{scroll-margin-top:120px;}
   .n-drawer-brand small{display:none;}
 }
 
-/* --- Hero background: fill the entire hero edge-to-edge on mobile/tablet so the
-     image stays behind all content as ONE full hero section (no letterbox strip,
-     no empty areas). cover fills full-height; center keeps the important middle
-     of the building/photo in frame. No blur; overlay is a separate element. --- */
+/* --- Hero background: keep the full original image visible (no crop/zoom) on
+     mobile/tablet too — contain scales the photo to fit while the slider stays
+     full-width, centred. Overlay is a separate element so text stays readable. --- */
+/* BACKUP - ORIGINAL CODE - DO NOT DELETE (mobile/tablet hero slide cover). PRESERVED. */
+/* .hero-slider .hslide{background-size:cover;background-position:center center;} */
+/* ==== END BACKUP - ORIGINAL CODE (mobile/tablet hero slide cover) ==== */
 @media (max-width:991.98px){
-  .hero-slider .hslide{background-size:cover;background-position:center center;}
+  .hero-slider .hslide{background-size:contain;background-position:center center;}
 }
 
 /* --- Hero panel: remove desktop horizontal shift on mobile --- */
