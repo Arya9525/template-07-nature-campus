@@ -2125,3 +2125,27 @@ section{scroll-margin-top:120px;}
   .metric span{font-size:.58rem;}
   .hero-panel{padding:0 12px;box-sizing:border-box;}
 }
+
+/* ================================================================
+   PRINCIPAL MESSAGE PAGE — spacing, centering and card-width tweaks
+   (page-specific overrides only; no other page is affected)
+   ================================================================ */
+/* BACKUP - ORIGINAL GLOBAL RULES - DO NOT DELETE. PRESERVED.
+.sec{position:relative;padding:100px 0;}
+.letters{display:grid;grid-template-columns:1fr 1fr;gap:44px;max-width:1120px;margin:0 auto;}
+@media (max-width:767.98px){.sec{padding:72px 0;}}
+@media (max-width:991.98px){.letters,.saplings,.split,.quotes,.contact-grid,.events-row{grid-template-columns:1fr;}}
+===== END BACKUP ================================================== */
+/* Bring the principal message card much closer to the page-hero
+   heading/subtitle: pull the section up into the hero's wide bottom
+   padding and trim its own top padding. The card design is untouched. */
+.principal-sec{margin-top:-36px;padding-top:16px;}
+/* Make the single message card a full-width centred block (the base
+   .letters grid is 2 columns, which left the one card as a narrow
+   left-hand column). The inline max-width:920px + margin:0 auto now
+   centre the wide card. */
+.principal-letters{display:block;}
+/* Tablet/mobile: keep the card close to the hero and full width. */
+@media (max-width:767.98px){
+  .principal-sec{margin-top:-24px;padding-top:12px;}
+}
