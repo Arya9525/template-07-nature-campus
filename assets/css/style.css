@@ -2149,3 +2149,12 @@ section{scroll-margin-top:120px;}
 @media (max-width:767.98px){
   .principal-sec{margin-top:-24px;padding-top:12px;}
 }
+
+/* ================================================================
+   PATRON-SAINT PAGE — "A Pedagogy of Love" card: make the single
+   foundress letter-card a full-width centred block (the base .letters
+   grid is 2 columns, which left the one card as a narrow left-hand
+   column). Inline max-width + margin:0 auto centre the card. Card
+   design is untouched; no other page is affected.
+   ================================================================ */
+.pedagogy-letters{display:block;}
