@@ -16,6 +16,7 @@
     initTheme();
     initNav();
     initReveal();
+    // initAccordionKeep(); // DISABLED: replaced by a pure-CSS open-pane guarantee.
     initCounters();
     initParallax();
     initSeedDraw();
@@ -128,6 +129,40 @@
     }, { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
     items.forEach(function (el) { obs.observe(el); });
   }
+
+  /* DISABLED (no longer needed): the accordion open-pane is kept visible by a
+     pure-CSS guarantee in style.css ("ACCORDION (academics)" section), so this
+     runtime re-assertion workaround is obsolete. Kept only as a reference.
+  function initAccordionKeep() {
+    // Academics page only: keep the default-open accordion (Primary Years)
+    // visible after page load. Bootstrap's collapse can re-evaluate the open
+    // pane while the reveal (.rv) transition is settling; re-assert the open
+    // state on DOM ready, window load, and just after that window. Manual
+    // open/close toggling is not affected.
+    var acc = document.querySelector('.nature-acc .accordion');
+    if (!acc) return;
+    var openPanel = null;
+    var openBtn = null;
+    acc.querySelectorAll('.accordion-collapse').forEach(function (panel) {
+      if (panel.classList.contains('show')) {
+        openPanel = panel;
+        var id = panel.getAttribute('id');
+        openBtn = id ? acc.querySelector('.accordion-button[data-bs-target="#' + id + '"]') : null;
+      }
+    });
+    if (!openPanel) return;
+    function keepOpen() {
+      if (openPanel) openPanel.classList.add('show');
+      if (openBtn) {
+        openBtn.classList.remove('collapsed');
+        openBtn.setAttribute('aria-expanded', 'true');
+      }
+    }
+    keepOpen();
+    window.addEventListener('load', keepOpen);
+    setTimeout(keepOpen, 1200);
+  }
+  */
 
   function initCounters() {
     var metrics = document.querySelectorAll('.metric b[data-count]');

@@ -1581,6 +1581,19 @@ section{scroll-margin-top:120px;}
 [data-theme="dark"] .nature-acc .accordion-body{color:#f7f0ea;opacity:1;}
 [data-theme="dark"] .nature-acc .accordion-body p{color:#f7f0ea;opacity:1;}
 .nature-acc .accordion-button::after{filter:hue-rotate(80deg) saturate(.6);}
+/* Keep the default-open "Primary Years" panel visible on load: the scroll
+   reveal (.rv) starts accordion items at opacity:0/translated until the
+   observer adds .in. Render accordion items visible so an open body is
+   never hidden by the reveal. Open/close toggle is unchanged. */
+.nature-acc .accordion-item{opacity:1;transform:none;}
+/* The default-open pane (#acad1 "Primary Years") must stay visible even
+   AFTER load; force the OPEN pane and its content fully rendered regardless
+   of reveal/transition state. Scoped to .nature-acc and gated on Bootstrap's
+   .show class, so manual open/close (and sibling toggle via data-bs-parent)
+   still works: once .show is removed these rules no longer apply. */
+.nature-acc .accordion-collapse.show{display:block !important;visibility:visible !important;opacity:1 !important;}
+.nature-acc .accordion-collapse.show .accordion-body,
+.nature-acc .accordion-collapse.show .accordion-body p{display:block !important;visibility:visible !important;opacity:1 !important;}
 
 /* ==================== FEES TABLE ==================== */
 .fee-table{max-width:880px;margin:0 auto;overflow-x:auto;}
