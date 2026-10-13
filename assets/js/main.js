@@ -504,7 +504,10 @@
     var images = [
       { src: 'assets/images/st.jpeg', caption: 'St. Anthony', fit: 'face-st' },
       { src: 'assets/images/fundress.jpg', caption: 'St. Claudine Th\u00e9venet', fit: 'face-fo' },
-      { src: 'assets/images/hero/hero-building.jpg', caption: 'St. Anthony\u0027s Junior College' }
+      { src: 'assets/images/hero/hero-building.jpg', caption: 'St. Anthony\u0027s Junior College' },
+      { src: 'assets/images/claudine%20block.jpeg', caption: 'Claudine Block' },
+      { src: 'assets/images/marian%20block.jpeg', caption: 'Marian Block' },
+      { src: 'assets/images/josephine%20block.jpeg', caption: 'Josephine Block' }
     ];
 
     var overlayLight = 'linear-gradient(180deg, rgba(7,19,14,.3) 0%, rgba(7,19,14,.22) 45%, rgba(7,19,14,.42) 100%)';
