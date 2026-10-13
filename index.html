@@ -158,18 +158,21 @@
 
   <section class="sec" id="about">
     <div class="container">
-      <div class="split">
-        <div class="split-img split-img-card rv about-slider-container" style="position: relative;">
-          <!-- About image slider -->
+      <div class="split" style="align-items: flex-start; gap: 48px;">
+        <div class="split-img split-img-card rv about-slider-container" style="position: relative; display: flex; align-items: flex-start; justify-content: center; padding: 0; margin: 0; line-height: 0; overflow: hidden; height: auto; align-self: flex-start;">
+          <!-- About section collage (replacing slider) -->
+          <img class="blob-img bi-1 card-img" src="assets/images/Catholic School Heritage Collage.png" alt="Catholic School Heritage Collage - St. Anthony's Junior College, Agra" loading="lazy" style="width: 80%; height: auto; aspect-ratio: 2/3; object-fit: contain; background: transparent; display: block; margin: 0; padding: 0; border: none; box-shadow: var(--shadow); border-radius: 14px;">
+          <!--
+          About image slider - COMMENTED OUT FOR FUTURE RESTORATION
           <div class="about-slider" aria-hidden="true" style="position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; border: 2px solid var(--card2, #fff); border-radius: 14px; box-shadow: var(--shadow);">
           </div>
-          <!-- About slider arrows -->
           <button type="button" class="about-arrow about-prev" aria-label="Previous slide" style="position: absolute; top: 88%; left: 48%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 41.4px; height: 41.4px; border-radius: 50%; background: transparent; color: #f4efe6; border: 2px solid rgba(244,239,230,.85); font-size: 0.945rem; line-height: 1; cursor: pointer; padding: 0; z-index: 10; transition: background .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);">
             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
           </button>
           <button type="button" class="about-arrow about-next" aria-label="Next slide" style="position: absolute; top: 88%; left: 58%; transform: translate(-50%, -50%); margin-left: 10px; display: grid; place-items: center; width: 41.4px; height: 41.4px; border-radius: 50%; background: transparent; color: #f4efe6; border: 2px solid rgba(244,239,230,.85); font-size: 0.945rem; line-height: 1; cursor: pointer; padding: 0; z-index: 10; transition: background .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);">
             <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
           </button>
+          -->
           <!-- <div class="float-badge fb-1">
             <b class="fb-num">1845</b><span>Established by the<br>Religious of Jesus &amp; Mary</span>
           </div>
@@ -177,7 +180,7 @@
             <b class="fb-num">Girls'</b><span>College<br>in Agra</span>
           </div> -->
         </div>
-        <div class="split-copy rv rv-d1">
+        <div class="split-copy rv rv-d1" style="align-self: stretch; display: flex; flex-direction: column; justify-content: space-between;">
           <span class="sec-eyebrow"><span class="leaf" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z" fill="#EF4235"/><path d="M32 70 C50 56 64 42 70 24" fill="none" stroke="#f4efe6" stroke-width="6" stroke-linecap="round"/></svg></span> Welcome to St. Anthony's</span>
           <h2>A Heritage of Educating Girls in Love</h2>
           <p>St. Anthony's Junior College, Agra for girls, was established in 1845 by the Religious of Jesus &amp; Mary and is run by The Jesus and Mary Agra Educational Society. It is the vision of our Mother Foundress, St. Claudine Thevenet, to train the minds of young girls so that they may lead purposeful, positive and constructive lives.</p>
@@ -187,7 +190,9 @@
             <li><span class="leaf" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z" fill="#EF4235"/><path d="M32 70 C50 56 64 42 70 24" fill="none" stroke="#f4efe6" stroke-width="6" stroke-linecap="round"/></svg></span> Under The Jesus and Mary Agra Educational Society</li>
             <li><span class="leaf" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 10 C74 24 82 52 78 78 C54 74 38 58 28 32 Z" fill="#EF4235"/><path d="M32 70 C50 56 64 42 70 24" fill="none" stroke="#f4efe6" stroke-width="6" stroke-linecap="round"/></svg></span> Guided by the motto "Be a Light to Enlighten"</li>
           </ul>
-          <a class="btn-leaf" href="about.html">Discover Our Story <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></a>
+          <div style="margin-top: auto; padding-top: 16px;">
+            <a class="btn-leaf" href="about.html">Discover Our Story <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></a>
+          </div>
         </div>
       </div>
     </div>
@@ -597,6 +602,7 @@
   <script src="assets/js/main.js"></script>
   </body>
   </html>
+<!-- About slider JS commented out (replaced by static collage)
 <script>
 (function() {
   'use strict';
@@ -608,10 +614,6 @@
       { src: 'assets/images/claudine%20block.jpeg', caption: 'Claudine Block' },
       { src: 'assets/images/marian%20block.jpeg', caption: 'Marian Block' },
       { src: 'assets/images/josephine%20block.jpeg', caption: 'Josephine Block' }
-      // Other images removed from About slider per request (files not deleted):
-      // { src: 'assets/images/st.jpeg', caption: 'St. Anthony' },
-      // { src: 'assets/images/fundress.jpg', caption: 'St. Claudine Thévenet' },
-      // { src: 'assets/images/hero/hero-building.jpg', caption: 'St. Anthony\'s Junior College' }
     ];
     images.forEach(function(img, i) {
       var slide = document.createElement('div');
@@ -647,23 +649,12 @@
     var nextBtn = document.querySelector('.about-next');
     if (prevBtn) {
       prevBtn.addEventListener('click', function() { startAuto(); show(index - 1); });
-      prevBtn.addEventListener('mouseenter', function() { this.style.background = 'rgba(15,8,6,.35)'; this.style.borderColor = 'rgba(244,239,230,.95)'; });
-      prevBtn.addEventListener('mouseleave', function() { this.style.background = 'transparent'; this.style.borderColor = 'rgba(244,239,230,.85)'; });
-      prevBtn.addEventListener('focus', function() { this.style.background = 'rgba(15,8,6,.35)'; this.style.borderColor = 'rgba(244,239,230,1)'; this.style.outline = '2px solid rgba(244,239,230,.5)'; this.style.outlineOffset = '2px'; });
-      prevBtn.addEventListener('blur', function() { this.style.background = 'transparent'; this.style.borderColor = 'rgba(244,239,230,.85)'; this.style.outline = 'none'; });
-      prevBtn.addEventListener('mousedown', function() { this.style.transform = 'translate(-50%, -50%) scale(.92)'; });
-      prevBtn.addEventListener('mouseup', function() { this.style.transform = 'translate(-50%, -50%)'; });
     }
     if (nextBtn) {
       nextBtn.addEventListener('click', function() { startAuto(); show(index + 1); });
-      nextBtn.addEventListener('mouseenter', function() { this.style.background = 'rgba(15,8,6,.35)'; this.style.borderColor = 'rgba(244,239,230,.95)'; });
-      nextBtn.addEventListener('mouseleave', function() { this.style.background = 'transparent'; this.style.borderColor = 'rgba(244,239,230,.85)'; });
-      nextBtn.addEventListener('focus', function() { this.style.background = 'rgba(15,8,6,.35)'; this.style.borderColor = 'rgba(244,239,230,1)'; this.style.outline = '2px solid rgba(244,239,230,.5)'; this.style.outlineOffset = '2px'; });
-      nextBtn.addEventListener('blur', function() { this.style.background = 'transparent'; this.style.borderColor = 'rgba(244,239,230,.85)'; this.style.outline = 'none'; });
-      nextBtn.addEventListener('mousedown', function() { this.style.transform = 'translate(-50%, -50%) scale(.92)'; });
-      nextBtn.addEventListener('mouseup', function() { this.style.transform = 'translate(-50%, -50%)'; });
     }
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initAboutSlider); } else { initAboutSlider(); }
 })();
 </script>
+-->
