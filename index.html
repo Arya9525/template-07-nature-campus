@@ -157,11 +157,107 @@
   </aside>
 
   <section class="sec" id="about">
+    <!--
+      About section - rearranged layout (all rules scoped to #about only).
+      Order: Welcome label -> full-width collage -> full-width heading -> two columns (paragraphs | list + button).
+      This is a presentation-only override. The existing .split markup and all its elements
+      (label, image, heading, paragraphs, list, button) are reused, not deleted, so removing
+      or commenting out this <style> block restores the original two-column layout exactly.
+    -->
+    <style>
+      /* The .split grid is repurposed into: row1 label, row2 full-width image, row3 full-width
+         heading, then two content columns. Its inline gap/align are overridden (inline styles
+         need !important). row-gap is kept compact so the heading sits close to the columns. */
+      #about .split{
+        display:grid !important;
+        grid-template-columns:1.15fr 1fr !important;
+        align-items:start !important;
+        row-gap:18px !important;
+        column-gap:56px !important;
+        max-width:1120px;
+        margin:0 auto;
+      }
+      /* Make the copy block's children participate directly in the grid so the label can sit
+         above the image while the heading/list form the two columns below it. */
+      #about .split-copy{ display:contents !important; }
+
+      /* 1) Welcome label: full width, left aligned with the content below. */
+      #about .split .sec-eyebrow{
+        grid-row:1; grid-column:1 / -1;
+        justify-self:start;
+      }
+
+      /* 2) Collage: full content width, natural aspect ratio (no crop/distort/hide). */
+      #about .split-img{
+        grid-row:2; grid-column:1 / -1;
+        display:block !important;
+        width:100%;
+        height:auto !important;
+        margin:0 !important;
+        padding:0 !important;
+        overflow:visible !important;
+      }
+      #about .split-img .blob-img{
+        display:block !important;
+        width:100% !important;
+        height:auto !important;
+        aspect-ratio:auto !important;
+        object-fit:contain !important;
+        border:0 !important;
+        border-radius:14px !important;
+        box-shadow:var(--shadow) !important;
+        margin:0 auto !important;
+      }
+
+      /* 3) Heading: its own full-width row, directly above the columns (single line on desktop). */
+      #about .split .split-copy > h2{ grid-row:3; grid-column:1 / -1; margin-top:0; margin-bottom:0; }
+
+      /* 4) Two aligned columns sharing the same top position:
+            left = both descriptive paragraphs, right = three key points + button.
+            Inner margins are matched (16px) so column spacing stays consistent. */
+      #about .split .split-copy > p:nth-of-type(1){ grid-row:4; grid-column:1; }
+      #about .split .split-copy > p:nth-of-type(2){ grid-row:5; grid-column:1; }
+      #about .split .check-list{ grid-row:4; grid-column:2; margin-top:0; margin-bottom:16px; }
+      #about .split .split-copy > div{ grid-row:5; grid-column:2; margin-top:0 !important; }
+
+      /* Backup of the previous placement (kept for reference, inactive):
+      #about .split .split-copy > h2{ grid-row:3; grid-column:1; margin-top:0; }
+      #about .split .check-list{ grid-row:3; grid-column:2; margin-top:0; }
+      #about .split .split-copy > div{ grid-row:4; grid-column:2; margin-top:0 !important; }
+      #about .split .split-copy > p:nth-of-type(1){ grid-row:4; grid-column:1; }
+      #about .split .split-copy > p:nth-of-type(2){ grid-row:5; grid-column:1; }
+      */
+
+      /* Mobile / tablet: single column, stacked label -> image -> heading -> text -> list -> button. */
+      @media (max-width:991.98px){
+        #about .split{
+          grid-template-columns:1fr !important;
+          row-gap:22px !important;
+          column-gap:0 !important;
+        }
+        #about .split .sec-eyebrow,
+        #about .split .split-img,
+        #about .split .split-copy > h2,
+        #about .split .split-copy > p,
+        #about .split .check-list,
+        #about .split .split-copy > div{
+          grid-row:auto !important;
+          grid-column:1 / -1 !important;
+        }
+        #about .split .sec-eyebrow{ order:1; }
+        #about .split .split-img{ order:2; }
+        #about .split .split-copy > h2{ order:3; }
+        #about .split .split-copy > p:nth-of-type(1){ order:4; }
+        #about .split .split-copy > p:nth-of-type(2){ order:5; }
+        #about .split .check-list{ order:6; }
+        #about .split .split-copy > div{ order:7; }
+      }
+    </style>
     <div class="container">
       <div class="split" style="align-items: flex-start; gap: 48px;">
         <div class="split-img split-img-card rv about-slider-container" style="position: relative; display: flex; align-items: flex-start; justify-content: center; padding: 0; margin: 0; line-height: 0; overflow: hidden; height: auto; align-self: flex-start;">
-          <!-- About section collage (replacing slider) -->
-          <img class="blob-img bi-1 card-img" src="assets/images/Catholic School Heritage Collage.png" alt="Catholic School Heritage Collage - St. Anthony's Junior College, Agra" loading="lazy" style="width: 80%; height: auto; aspect-ratio: 2/3; object-fit: contain; background: transparent; display: block; margin: 0; padding: 0; border: none; box-shadow: var(--shadow); border-radius: 14px;">
+          <!-- About section collage (replacing slider). Previous src was assets/images/Catholic School Heritage Collage.png -->
+          <img class="blob-img bi-1 card-img" src="assets/images/collage.png" alt="St. Anthony's Junior College, Agra - heritage collage" loading="lazy" style="width: 80%; height: auto; aspect-ratio: 2/3; object-fit: contain; background: transparent; display: block; margin: 0; padding: 0; border: none; box-shadow: var(--shadow); border-radius: 14px;">
           <!--
           About image slider - COMMENTED OUT FOR FUTURE RESTORATION
           <div class="about-slider" aria-hidden="true" style="position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; border: 2px solid var(--card2, #fff); border-radius: 14px; box-shadow: var(--shadow);">
